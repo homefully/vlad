@@ -1,3 +1,17 @@
+# v0.4.1 (Thu Jun 24 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'opencreek:master' into master ([@reckter](https://github.com/reckter))
+- :memo: Add JSDoc to all validators ([@LionC](https://github.com/LionC))
+
+#### Authors: 2
+
+- Hannes Güdelhöfer ([@reckter](https://github.com/reckter))
+- Leon Strauss ([@LionC](https://github.com/LionC))
+
+---
+
 # v0.4.0 (Thu Jun 24 2021)
 
 #### 🚀 Enhancement

@@ -6,6 +6,13 @@
     "files": [
         "dist"
     ],
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "github:homefully/vlad"
+    },
     "scripts": {
         "build": "tsc",
         "test": "tsc && ava",

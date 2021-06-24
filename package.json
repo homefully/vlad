@@ -1,5 +1,5 @@
 {
-    "name": "vlad",
+    "name": "@homefully/vlad",
     "version": "0.3.3",
     "description": "",
     "main": "dist/vlad.js",

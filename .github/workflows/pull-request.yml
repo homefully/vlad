@@ -26,15 +26,6 @@ jobs:
         if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
         steps:
             - uses: actions/checkout@v2
-            - name: Prepare repository
-              run: |
-                  git checkout ${GITHUB_HEAD_REF#refs/heads/} --
-                  git remote rm origin
-                  git remote add origin https://homefully-bot:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
-                  git fetch origin --tags
-                  git branch --set-upstream-to origin/${GITHUB_HEAD_REF#refs/heads/} ${GITHUB_HEAD_REF#refs/heads/}
-              env:
-                  GITHUB_TOKEN: ${{secrets.GH_BOT_TOKEN}}
             - uses: actions/setup-node@v2
               with:
                   node-version: 12

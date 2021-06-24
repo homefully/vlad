@@ -47,5 +47,6 @@ jobs:
             - run: npx auto shipit
               env:
                   GITHUB_TOKEN: ${{ secrets.GH_BOT_PUBLISH_SECRET }}
+                  GH_TOKEN: ${{ secrets.GH_BOT_PUBLISH_SECRET }}
                   NPM_TOKEN: ${{ secrets.GH_BOT_PUBLISH_SECRET }}
                   NODE_AUTH_TOKEN: ${{secrets.GH_BOT_PUBLISH_SECRET}}

@@ -1,0 +1,41 @@
+name: Pipeline
+
+on:
+    push:
+        branches-ignore:
+            - "master"
+        tags-ignore:
+            - "v*"
+
+jobs:
+    test:
+        name: Test
+        runs-on: ubuntu-latest
+        if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+        steps:
+            - uses: actions/checkout@main
+            - uses: actions/setup-node@main
+              with:
+                  node-version: 12
+                  registry-url: https://npm.pkg.github.com
+                  scope: "@homefully"
+                  always-auth: true
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            - uses: actions/cache@main
+              id: cache-modules
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - uses: actions/cache@main
+              if: steps.cache-modules.outputs.cache-hit != 'true'
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-global
+            - run: npm ci
+              if: steps.cache-modules.outputs.cache-hit != 'true'
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.GH_BOT_TOKEN}}
+            - run: npm run lint
+            - run: npm run test:ci
+            - run: npm run build

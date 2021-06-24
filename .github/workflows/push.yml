@@ -36,6 +36,5 @@ jobs:
               if: steps.cache-modules.outputs.cache-hit != 'true'
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GH_BOT_TOKEN}}
-            - run: npm run lint
             - run: npm run test:ci
             - run: npm run build
